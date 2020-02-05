@@ -8,8 +8,12 @@ public class MorePractice : MonoBehaviour
     public UnityEvent mouseDownEvent, mouseOverEvent, mouseExitEvent, mouseEnterEvent;
     private float horizontalInput;
     private float forwardInput;
-    public float speed = 5;
-    public float turnSpeed = 5;
+    public float speed = 5f;
+    public float turnSpeed = 5f;
+    public Vector3 positionDirection;
+    public CharacterController Controller;
+    public float gravity = -10f;
+    public float jumpForce = 10f;
  
     // unity events.
     private void OnMouseDown()
@@ -36,10 +40,13 @@ public class MorePractice : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+        positionDirection.x = Input.GetAxis("Horizontal") * speed;
+        Controller.Move(motion: positionDirection * Time.deltaTime);
+        positionDirection.y = gravity;
 
+        if (Input.GetButtonDown("Jump"))
+        {
+            positionDirection.y = jumpForce;
+        }
     }
 }
