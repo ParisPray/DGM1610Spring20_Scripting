@@ -12,7 +12,7 @@ public class Lightscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lightObj.intensity = 0f;
+        lightObj.intensity = 1f;
     }
 
     // Update is called once per frame
