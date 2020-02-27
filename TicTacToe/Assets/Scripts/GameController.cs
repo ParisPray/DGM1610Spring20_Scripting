@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
 {
     public Text[] buttonList;
     private string playerSide;
+    public GameObject gameOverPanel;
+    public Text gameOverText;
 
 // FOR MY PROFESSOR IF HES READING THIS: hi!!! :D
 
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
     {
         SetGameControllerReferenceOnButtons();
         playerSide = "X";
+        gameOverPanel.SetActive(false);
     }
 
     // assigns a symbol to a player side
@@ -32,6 +35,10 @@ public class GameController : MonoBehaviour
         return playerSide;
     }
 
+    void ChangeSides()
+    {
+        playerSide = (playerSide == "X") ? "O" : "X";
+    }
     // Checks the top row to see if all spaces match the player.
     public void EndTurn()
     {
@@ -74,6 +81,8 @@ public class GameController : MonoBehaviour
         {
             GameOver();
         }
+
+        ChangeSides();
     }
     void GameOver()
     {
@@ -83,5 +92,7 @@ public class GameController : MonoBehaviour
 
         }
 
+        gameOverPanel.SetActive(true);
+        gameOverText.text = playerSide + " Wins!";
     }
 }
