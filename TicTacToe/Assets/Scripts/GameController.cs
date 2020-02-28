@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     private string playerSide;
     public GameObject gameOverPanel;
     public Text gameOverText;
+    private int moveCount;
 
 // FOR MY PROFESSOR IF HES READING THIS: hi!!! :D
 
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
         SetGameControllerReferenceOnButtons();
         playerSide = "X";
         gameOverPanel.SetActive(false);
+        moveCount = 0;
     }
 
     // assigns a symbol to a player side
@@ -42,6 +44,8 @@ public class GameController : MonoBehaviour
     // Checks the top row to see if all spaces match the player.
     public void EndTurn()
     {
+        moveCount++;
+
         if (buttonList[0].text == playerSide && buttonList[1].text == playerSide && buttonList[2].text == playerSide)
         {
             GameOver();
@@ -82,7 +86,16 @@ public class GameController : MonoBehaviour
             GameOver();
         }
 
+        if(moveCount >= 9)
+        {
+            SetGameOverText("It's a draw!");
+        }
         ChangeSides();
+    }
+    void SetGameOverText(string value)
+    {
+        gameOverPanel.SetActive(true);
+        gameOverText.text = value;
     }
     void GameOver()
     {
@@ -92,7 +105,6 @@ public class GameController : MonoBehaviour
 
         }
 
-        gameOverPanel.SetActive(true);
-        gameOverText.text = playerSide + " Wins!";
+        SetGameOverText(playerSide + " Wins!");
     }
 }
