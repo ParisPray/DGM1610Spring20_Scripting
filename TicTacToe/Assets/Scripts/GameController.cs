@@ -11,7 +11,16 @@ public class GameController : MonoBehaviour
     public Text gameOverText;
     private int moveCount;
 
-// FOR MY PROFESSOR IF HES READING THIS: hi!!! :D
+    // FOR MY PROFESSOR IF HES READING THIS: hi!!! :D
+
+
+    void Awake()
+    {
+        SetGameControllerReferenceOnButtons();
+        playerSide = "X";
+        gameOverPanel.SetActive(false);
+        moveCount = 0;
+    }
 
     // Function for looping through all the buttons
     void SetGameControllerReferenceOnButtons()
@@ -22,26 +31,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        SetGameControllerReferenceOnButtons();
-        playerSide = "X";
-        gameOverPanel.SetActive(false);
-        moveCount = 0;
-    }
-
-    // assigns a symbol to a player side
-
     public string GetPlayerSide()
     {
         return playerSide;
     }
 
-    void ChangeSides()
-    {
-        playerSide = (playerSide == "X") ? "O" : "X";
-    }
-    // Checks the top row to see if all spaces match the player.
     public void EndTurn()
     {
         moveCount++;
@@ -86,16 +80,16 @@ public class GameController : MonoBehaviour
             GameOver();
         }
 
-        if(moveCount >= 9)
+        if (moveCount >= 9)
         {
             SetGameOverText("It's a draw!");
         }
         ChangeSides();
     }
-    void SetGameOverText(string value)
+
+    void ChangeSides()
     {
-        gameOverPanel.SetActive(true);
-        gameOverText.text = value;
+        playerSide = (playerSide == "X") ? "O" : "X";
     }
     void GameOver()
     {
@@ -107,4 +101,13 @@ public class GameController : MonoBehaviour
 
         SetGameOverText(playerSide + " Wins!");
     }
+    void SetGameOverText(string value)
+    {
+        gameOverPanel.SetActive(true);
+        gameOverText.text = value;
+    }
 }
+
+  
+   
+    
