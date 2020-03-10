@@ -17,18 +17,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Controller.Move(move * Time.deltaTime * speed);
-     
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                Instantiate(projectilePrefab);
-                transform.Translate(Vector3.left * Time.deltaTime * speed);
-
-            }
+            
         }
+
+        
     }
 }
+

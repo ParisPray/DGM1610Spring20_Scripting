@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float speed;
     public GameObject enemy;
     public GameObject projectile;
+    public GameObject GameObject;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +26,13 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
        
-        Destroy(enemy);
-        Destroy(projectile);
+        Destroy(GameObject);
     }
 }

@@ -199,4 +199,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   enemy: {fileID: 95319033416429996, guid: 7bad756761eac884daabbd48711ea7f4, type: 3}
-  projectile: {fileID: 0}
+  projectile: {fileID: 7891122697084509359}
+  GameObject: {fileID: 0}
