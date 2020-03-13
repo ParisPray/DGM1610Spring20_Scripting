@@ -6,29 +6,41 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player;
-    private Rigidbody rb;
-    public float moveSpeed = 5f;
-    private Vector3 movement;
-    
-    private void Start()
+    public float speed;
+    private Rigidbody enemyRb;
+    private GameObject player;
+
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
+        enemyRb = GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
     }
-    private void Update()
+
+    // Update is called once per frame
+    void Update()
     {
-        Vector3 direction = player.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
-        direction.Normalize();
-        movement = direction;
+
+        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        enemyRb.AddForce(lookDirection * speed);
+
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
+
+        
     }
-    private void FixedUpdate()
+    private void OnCollisionEnter(Collision other)
     {
-        moveEnemy(movement);
-    }
-    void moveEnemy(Vector3 direction)
-    {
-        rb.MovePosition((Vector3)transform.position + (direction * moveSpeed * Time.deltaTime));
+        if (other.gameObject.CompareTag("Player"))
+        {
+           
+            Debug.Log("You Died!");
+            Destroy(other.gameObject);
+        }
     }
 }
+
