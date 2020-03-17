@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 positionDirection;
     public CharacterController Controller;
     public GameObject projectilePrefab;
+    public float shootForce;
 
     private void Update()
     {
@@ -21,13 +22,15 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
 
-
+            GameObject shot = GameObject.Instantiate(projectilePrefab, transform.position, transform.rotation);
+            shot.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce);
         }
 
-        
+
     }
+
+        
+    
 }
 

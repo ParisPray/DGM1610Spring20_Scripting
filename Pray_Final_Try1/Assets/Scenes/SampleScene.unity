@@ -1001,7 +1001,9 @@ MonoBehaviour:
   turnSpeed: 100
   positionDirection: {x: 0, y: 0, z: 0}
   Controller: {fileID: 2052746273}
-  projectilePrefab: {fileID: 1217436001}
+  projectilePrefab: {fileID: 7891122697084509359, guid: 04dbdb1f9583dc24db50a6ed06b34bb7,
+    type: 3}
+  shootForce: 20
 --- !u!1001 &95319033731190067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,7 +1101,8 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: 0.0051949923
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6237012921507152552, guid: 7bad756761eac884daabbd48711ea7f4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7bad756761eac884daabbd48711ea7f4, type: 3}
 --- !u!1001 &5477554332783122136
 PrefabInstance:
@@ -1202,6 +1205,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.z
       value: 0.05219508
+      objectReference: {fileID: 0}
+    - target: {fileID: 191851783564887903, guid: 04dbdb1f9583dc24db50a6ed06b34bb7,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3874138536260955884, guid: 04dbdb1f9583dc24db50a6ed06b34bb7, type: 3}
