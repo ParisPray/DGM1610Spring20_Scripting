@@ -21,8 +21,6 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
     }
 
 
@@ -34,6 +32,7 @@ public class SpawnManager : MonoBehaviour
 
         Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
     }
+
 
 
 
