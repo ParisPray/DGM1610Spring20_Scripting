@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharacterController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private float horizontalInput;
     private float forwardInput;
