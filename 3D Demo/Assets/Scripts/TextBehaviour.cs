@@ -15,7 +15,12 @@ using UnityEngine.UI;
         {
         textObj = GetComponent<Text>();
         }
-
+    public void ChangeText(string message)
+    {
+        print(textObj);
+        print(message);
+        textObj.text = message;
+    }
     public void ChangeText(IntData obj)
     {
         textObj.text = obj.value.ToString();
