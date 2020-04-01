@@ -7,7 +7,6 @@ public class Coroutines : MonoBehaviour
 {
     public int counter = 3;
     public float seconds = 1f;
-    public string message = "Go!";
     public IntData numberData;
 
     public UnityEvent startEvent, repeatEvent, endEvent;

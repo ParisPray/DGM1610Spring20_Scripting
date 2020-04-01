@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float turnSpeed = 5f;
     public Vector3 positionDirection;
     public CharacterController Controller;
+    public BoxCollider playerBox;
     public float gravity = -10f;
     public float jumpForce = 10f;
 
@@ -26,10 +27,14 @@ public class Player : MonoBehaviour
         positionDirection.x = Input.GetAxis("Horizontal") * speed;
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
-
+        
         if (Input.GetButtonDown("Jump"))
         {
             positionDirection.y = jumpForce;
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
