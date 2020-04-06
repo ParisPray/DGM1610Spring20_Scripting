@@ -14,7 +14,8 @@ public class MorePractice : MonoBehaviour
     public CharacterController Controller;
     public float gravity = -10f;
     public float jumpForce = 10f;
- 
+    public UnityEvent jumpEvent;
+
     // unity events.
     private void OnMouseDown()
     {
@@ -44,8 +45,9 @@ public class MorePractice : MonoBehaviour
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown("space"))
         {
+            jumpEvent.Invoke();
             positionDirection.y = jumpForce;
         }
     }
