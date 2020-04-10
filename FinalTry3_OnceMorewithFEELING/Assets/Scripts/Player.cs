@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     public bool isOnGround = true;
     public bool gameOver = false;
 
+    public void Start()
+    {
+        isOnGround = true;
+    }
     // unity events.
     private void OnMouseDown()
     {
@@ -47,10 +51,9 @@ public class Player : MonoBehaviour
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
 
-        if (Input.GetKeyDown("space") && isOnGround && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             jumpEvent.Invoke();
-            isOnGround = false;
             positionDirection.y = jumpForce;
         }
     }
@@ -60,7 +63,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+        }
+    }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Treasure"))
+        {
+            Destroy(other.gameObject);
         }
     }
 }
