@@ -10,8 +10,8 @@ public class IntData : ScriptableObject
     public int value;
 
    
-    void Update()
+    public void changeValue(int newvalue)
     {
-        
+        value = newvalue;
     }
 }

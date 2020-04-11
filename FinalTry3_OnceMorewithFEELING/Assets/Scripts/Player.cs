@@ -50,10 +50,11 @@ public class Player : MonoBehaviour
         positionDirection.x = Input.GetAxis("Horizontal") * speed;
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
-
+       
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             jumpEvent.Invoke();
+            isOnGround = false;
             positionDirection.y = jumpForce;
         }
     }
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            Debug.Log(isOnGround);
         }
     }
 
