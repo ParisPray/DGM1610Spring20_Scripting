@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent mouseDownEvent, mouseOverEvent, mouseExitEvent, mouseEnterEvent;
+    public UnityEvent enterEvent;
     private float horizontalInput;
     private float forwardInput;
     public float speed = 5f;
@@ -15,33 +15,14 @@ public class Player : MonoBehaviour
     public float gravity = -10f;
     public float jumpForce = 10f;
     public UnityEvent jumpEvent;
-    public bool isOnGround = true;
     public bool gameOver = false;
-
+    
     public void Start()
     {
-        isOnGround = true;
+        
     }
     // unity events.
-    private void OnMouseDown()
-    {
-        mouseDownEvent.Invoke();
-
-    }
-
-    private void OnMouseOver()
-    {
-        mouseOverEvent.Invoke();
-    }
-
-    private void OnMouseExit()
-    {
-        mouseExitEvent.Invoke();
-    }
-    private void OnMouseEnter()
-    {
-        mouseEnterEvent.Invoke();
-    }
+   
 
     // basic controls on player character in order to allow testing of unityevents to flow easier.
 
@@ -51,21 +32,16 @@ public class Player : MonoBehaviour
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
        
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
+        if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
         {
             jumpEvent.Invoke();
-            isOnGround = false;
             positionDirection.y = jumpForce;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isOnGround = true;
-            Debug.Log(isOnGround);
-        }
+        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -73,6 +49,12 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Treasure"))
         {
             Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Health"))
+        {
+            Destroy(other.gameObject);
+            enterEvent.Invoke();
         }
     }
 }

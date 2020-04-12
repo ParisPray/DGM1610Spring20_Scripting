@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Treasure
+  - Health
+  - Enemy
   layers:
   - Default
   - TransparentFX
