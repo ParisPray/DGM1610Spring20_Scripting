@@ -5,21 +5,30 @@ using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
-    public int counter = 3;
-    public float seconds = 1f;
-    public IntData numberData;
-    private WaitForSeconds waitObj;
-    public UnityEvent startEvent, repeatEvent, endEvent;
+    public UnityEvent startEvent, counterdownEvent, deathEvent;
     float currCountdownValue;
+    public IntData time;
+    public int maxTime;
 
-    public IEnumerator StartCountdown(float countdownValue = 10)
+    public void Start()
     {
-        currCountdownValue = countdownValue;
-        while (currCountdownValue > 0)
+        time.value = maxTime;
+        StartCountdown();
+    }
+
+    public void StartCountdown()
+    {
+        StartCoroutine(Countdown());
+    }
+
+    public IEnumerator Countdown()
+    {
+        while (time.value > 0)
         {
-            Debug.Log("Countdown: " + currCountdownValue);
+            counterdownEvent.Invoke();
             yield return new WaitForSeconds(1.0f);
-            currCountdownValue--;
+            time.value--;
         }
+        deathEvent.Invoke();
     }
 }

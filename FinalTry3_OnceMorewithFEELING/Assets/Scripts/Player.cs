@@ -44,17 +44,5 @@ public class Player : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Treasure"))
-        {
-            Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag("Health"))
-        {
-            Destroy(other.gameObject);
-            enterEvent.Invoke();
-        }
-    }
+   
 }
