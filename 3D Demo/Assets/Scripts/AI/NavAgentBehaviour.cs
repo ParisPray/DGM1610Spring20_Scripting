@@ -30,6 +30,8 @@ public class NavAgentBehaviour : MonoBehaviour
     }
     void Update()
     {
+        // change angular speed to 0, change y to 90 degrees, take off flip script
+        transform.LookAt(agent.steeringTarget);
         if (canHunt)
         {
             agent.destination = currentDestination.position;
