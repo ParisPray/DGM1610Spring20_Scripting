@@ -7,6 +7,7 @@ public class HealthScript : MonoBehaviour
 {
     public UnityEvent addhealthEvent, subtracthealthEvent, deathEvent;
     public IntData health;
+    public ParticleSystem explosionParticle;
 
     public void Start()
     {
@@ -28,7 +29,8 @@ public class HealthScript : MonoBehaviour
     {
         health.value--;
         subtracthealthEvent.Invoke();
-        if(health.value <= 0)
+        explosionParticle.Play();
+        if (health.value <= 0)
         {
             deathEvent.Invoke();
         }
