@@ -36,10 +36,7 @@ public class HealthScript : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Treasure"))
-        {
-            Destroy(other.gameObject);
-        }
+      
 
         if (other.CompareTag("Health"))
         {
