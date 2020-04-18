@@ -26,5 +26,9 @@ public class Pointscript : MonoBehaviour
             Destroy(other.gameObject);
             AddPoints();
         }
+        else
+        {
+            print(Points.value);
+        }
     }
 }

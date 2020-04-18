@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent enterEvent;
+    public UnityEvent enterEvent, endEvent;
     private float horizontalInput;
     private float forwardInput;
     public float speed = 5f;
@@ -16,12 +16,13 @@ public class Player : MonoBehaviour
     public float jumpForce = 10f;
     public UnityEvent jumpEvent;
     public bool gameOver = false;
+
     
     public void Start()
     {
         
     }
-    // unity events.
+   
    
 
     // basic controls on player character in order to allow testing of unityevents to flow easier.
@@ -39,10 +40,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("End"))
+        {
+            endEvent.Invoke();
+        }
     }
 
-   
+
+
 }
