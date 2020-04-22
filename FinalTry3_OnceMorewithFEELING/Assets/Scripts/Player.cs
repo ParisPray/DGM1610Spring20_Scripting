@@ -16,20 +16,37 @@ public class Player : MonoBehaviour
     public float jumpForce = 10f;
     public UnityEvent jumpEvent;
     public bool gameOver = false;
-
-    
-    public void Start()
-    {
-        
-    }
-   
+    public Animator playerAnimator;
+    public GameObject groundCheck;
+    public bool isGrounded;
+    public float groundCheckRadius;
    
 
     // basic controls on player character in order to allow testing of unityevents to flow easier.
 
     private void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundCheckRadius);
+
+        if (isGrounded)
+        {
+            playerAnimator.SetBool("isJumping", false);
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
+        }
+
         positionDirection.x = Input.GetAxis("Horizontal") * speed;
+        
+        if(positionDirection.x != 0 && isGrounded)
+        {
+            playerAnimator.SetBool("isRunning", true);
+        }
+        else if(positionDirection.x == 0 && isGrounded)
+        {
+            playerAnimator.SetBool("isRunning", false);
+        }
         Controller.Move(motion: positionDirection * Time.deltaTime);
         positionDirection.y = gravity;
        
@@ -37,6 +54,8 @@ public class Player : MonoBehaviour
         {
             jumpEvent.Invoke();
             positionDirection.y = jumpForce;
+            //playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isJumping", true);
         }
     }
 
