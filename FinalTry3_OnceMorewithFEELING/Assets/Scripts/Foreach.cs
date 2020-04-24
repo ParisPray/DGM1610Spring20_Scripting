@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Tutoring : MonoBehaviour
+public class Foreach : MonoBehaviour
 {
     public GameObject[] powerups;
     public List <GameObject> powerupsList;
