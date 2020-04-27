@@ -7,6 +7,8 @@ public class Pointscript : MonoBehaviour
 {
     public IntData Points;
     public UnityEvent addpointsEvent;
+    public AudioClip coinSound;
+    public AudioSource playerAudio;
 
     public void Start()
     {
@@ -25,6 +27,7 @@ public class Pointscript : MonoBehaviour
         {
             Destroy(other.gameObject);
             AddPoints();
+            playerAudio.PlayOneShot(coinSound, 1.0f);
         }
         else
         {

@@ -20,8 +20,9 @@ public class Player : MonoBehaviour
     public GameObject groundCheck;
     public bool isGrounded;
     public float groundCheckRadius;
-   
-
+    public AudioClip jumpSound;
+    public AudioSource playerAudio;
+    public AudioClip endSound;
     // basic controls on player character in order to allow testing of unityevents to flow easier.
 
     private void Update()
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
             positionDirection.y = jumpForce;
             //playerAnimator.SetBool("isRunning", false);
             playerAnimator.SetBool("isJumping", true);
+            playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
     }
 
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("End"))
         {
             endEvent.Invoke();
+            playerAudio.PlayOneShot(endSound, 1.0f);
         }
     }
 

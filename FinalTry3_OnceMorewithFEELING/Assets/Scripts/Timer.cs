@@ -9,6 +9,8 @@ public class Timer : MonoBehaviour
     float currCountdownValue;
     public IntData time;
     public int maxTime;
+    public AudioSource playerAudio;
+    public AudioClip deathSound;
 
     public void Start()
     {
@@ -30,5 +32,6 @@ public class Timer : MonoBehaviour
             time.value--;
         }
         deathEvent.Invoke();
+        playerAudio.PlayOneShot(deathSound, 1.0f);
     }
 }
